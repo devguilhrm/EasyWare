@@ -1,38 +1,166 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
-*{
-    margin: 0px;
-    padding: 0px;
+
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family:google sans;
+    font-family: 'Google Sans', sans-serif;
 }
 
-/* Criando variáveis */
-
-:root{
-  --cor01: rgb(226, 226, 226);
-  --cor02: rgb(204, 155, 253);
-  --cor03: rgb(101, 44, 157);
-  --cor04: rgb(0, 0, 0);
+/* 🎨 Paleta de Cores Moderna (Roxo & Dark) */
+:root {
+    --bg-body: #0a0813;          /* Fundo ultra dark com toque sutil de roxo */
+    --bg-surface: #130f22;       /* Fundo dos cards (Glassmorphism moderno) */
+    --bg-input: #1e1932;         /* Fundo do input */
+    --cor-primaria: #9d4edd;     /* Roxo principal vibrante */
+    --cor-secundaria: #c77dff;   /* Roxo claro para hovers e destaques */
+    --texto-principal: #f8f9fa;  /* Branco fosco para leitura confortável */
+    --texto-secundario: #b39ddb; /* Roxo acinzentado para textos secundários */
+    --borda-suave: rgba(157, 78, 221, 0.15);
 }
 
-/* formatando o header*/
-#geral{
-    margin: 20px;
-
-
+body {
+    background-color: var(--bg-body);
+    color: var(--texto-principal);
+    min-height: 100vh;
 }
-#cabecalho {
-    background-color: rgb(57, 19, 89);
+
+/* 📐 Layout Responsivo Principal */
+#geral {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0px 20px;
-    height: 100px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* Configurando a navbar na horizontal */
+/* 🗂️ Cabeçalho Responsivo */
+#cabecalho {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--borda-suave);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    min-height: 80px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#logo {
+    font-weight: 1000;
+    font-size: 2rem;
+    color: var(--cor-secundaria);
+}
+
+/* Configurando a navbar */
 #menu ul {
     display: flex;
-    gap:25px;
+    gap: 25px;
     list-style: none;
+    flex-wrap: wrap;
+}
+
+#menu ul li a {
+    color: var(--texto-principal);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+#menu ul li a:hover {
+    color: var(--cor-secundaria);
+}
+
+/* 🔍 Seção de Pesquisa Fluida e Moderna */
+#pesquisa {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#input-pesquisa {
+    width: 100%;
+    height: 55px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--borda-suave);
+    border-radius: 50px;
+    padding: 0 25px;
+    color: var(--texto-principal);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#input-pesquisa:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
+}
+
+/* Grid de Cards Totalmente Responsivo */
+#cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--borda-suave);
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--cor-secundaria);
+    box-shadow: 
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(199, 125, 255, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* 🛒 Botão de Compra Estilizado */
+.card .btn-carrinho {
+    width: 100%;
+    max-width: 220px;
+    height: 45px;
+    margin-top: 15px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--cor-primaria), #7005ce);
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+#footbar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    font-size: 14px;
 }
