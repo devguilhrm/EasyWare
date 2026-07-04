@@ -74,7 +74,16 @@ body {
     transition: transform 0.3s ease, filter 0.3s ease;
     cursor: pointer;
 }
+#logo img {
+    width: 55px;
+    height: 55px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
 
+#logo img:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));
+}
 .icone-carrinho:hover {
     transform: scale(1.15);
     filter: brightness(0) saturate(100%) invert(23%) sepia(88%) saturate(2636%) hue-rotate(255deg) brightness(97%) contrast(101%);
