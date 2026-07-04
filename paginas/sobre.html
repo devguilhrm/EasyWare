@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - EasyWare</title>
+    <link rel="stylesheet" href="../css/style-sobre.css">
+    <script src="../js/carousel.js" defer></script>
+</head>
+<body>
+    <main id="geral">
+        <header id="cabecalho">
+            <div id="logo">EasyWare</div>
+            <nav id="menu">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="carrinho.html">Carrinho</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Seção 1 Quem Somos e Carrossel Principal -->
+        <section class="quemsomos-card">
+            <h1>Quem Somos</h1>
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <div class="slide-content">
+                        <h3>Inovação em Hardware</h3>
+                        <p>Trazemos o que há de mais moderno no mercado global para o seu setup.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <h3>Performance Extrema</h3>
+                        <p>Focados em entregar a melhor experiência para gamers e profissionais.</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <h3>Suporte Especializado</h3>
+                        <p>Uma equipe apaixonada por tecnologia pronta para te auxiliar.</p>
+                    </div>
+                </div>
+
+                <button class="carousel-prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="carousel-next" onclick="changeSlide(1)">&#10095;</button>
+                
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+            <p>A <strong>EasyWare</strong> nasceu da paixão por tecnologia e performance. Somos especialistas em hardware de alta performance, oferecendo o que há de mais moderno no mercado para gamers, entusiastas e profissionais.</p>
+        </section>
+
+        <section class="missao-card">
+            <h2>Nossa Missão</h2>
+            <div class="Nossa-missao">
+             <h3>Facilitar o acesso a componentes de última geração com transparência, qualidade e o melhor suporte técnico do Brasil. Queremos que cada cliente tenha a melhor experiência possível ao montar ou atualizar seu setup.</h3>  
+
+            </div>
+        </section>
+
+        <!-- Seção 3 Feedback dos Clientes -->
+        <section class="glass-card">
+            <h2>O que nossos clientes dizem</h2>
+            <div class="feedback-carousel-section">
+                <div class="feedback-track">
+                    <div class="feedback-item">
+                        <p class="feedback-text">"Entrega rápida e peças muito bem embaladas!"</p>
+                        <span class="feedback-name">Joemysson Mikael</span>
+                    </div>
+                    <div class="feedback-item">
+                        <p class="feedback-text">"O melhor suporte técnico que já utilizei."</p>
+                        <span class="feedback-name">Prof Alisson</span>
+                    </div>
+                    <div class="feedback-item">
+                        <p class="feedback-text">"Preços imbatíveis e produtos de altíssima qualidade."</p>
+                        <span class="feedback-name">Luiz Miguel</span>
+                    </div>
+                    <div class="feedback-item">
+                        <p class="feedback-text">"Minha loja favorita para upgrades de PC!"</p>
+                        <span class="feedback-name">Luiz Kauã</span>
+                    </div>
+                    <!-- Duplicação para loop infinito -->
+                    <div class="feedback-item">
+                        <p class="feedback-text">"Entrega rápida e peças muito bem embaladas!"</p>
+                        <span class="feedback-name">Jhonatã</span>
+                    </div>
+                    <div class="feedback-item">
+                        <p class="feedback-text">"O melhor suporte técnico que já utilizei."</p>
+                        <span class="feedback-name">Gleidson Rocha</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footbar">
+            EasyWare Copyright 2026 - Todos os direitos reservados.
+        </footer>
+    </main>
+</body>
+</html>

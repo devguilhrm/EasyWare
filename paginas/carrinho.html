@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho</title>
+    <link rel="stylesheet" href="../css/style-carrinho.css">
+    <script src="../JS/carrinho-page.js" defer></script>
+</head>
+<body>
+
+    <div class="carrinho-container">
+        <header class="carrinho-header">
+            <h1>Meu Carrinho</h1>
+            <a href="../index.html" class="btn-voltar">← Continuar Comprando</a>
+        </header>
+
+        <div class="carrinho-content">
+            <div class="itens-carrinho" id="itensCarrinho">
+                <!-- Itens serão inseridos via JavaScript -->
+            </div>
+
+            <div class="carrinho-vazio" id="carrinhoVazio" style="display: none;">
+                <div class="icone-vazio">🛒</div>
+                <h2>Seu carrinho está vazio</h2>
+                <p>Adicione produtos para continuar</p>
+                <a href="../index.html" class="btn-comprar">Ver Produtos</a>
+            </div>
+
+            <aside class="resumo-pedido" id="resumoPedido">
+                <h2>Resumo do Pedido</h2>
+                
+                <div class="resumo-linha">
+                    <span>Subtotal</span>
+                    <span id="subtotal">R$ 0,00</span>
+                </div>
+                
+                <div class="resumo-linha">
+                    <span>Frete</span>
+                    <span id="frete">Grátis</span>
+                </div>
+                
+                <div class="resumo-linha total">
+                    <span>Total</span>
+                    <span id="total">R$ 0,00</span>
+                </div>
+
+                <button class="btn-finalizar" id="btnFinalizar">Finalizar Compra</button>
+                
+                <button class="btn-limpar" id="btnLimpar">Limpar Carrinho</button>
+            </aside>
+        </div>
+    </div>
+
+</body>
+</html>

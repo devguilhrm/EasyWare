@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../css/style-cadastro.css">
+    <script src="../JS/logindone.js" defer></script>
+</head>
+<body>
+
+    <div class="cadastro-container">
+        <h1>Criar Conta</h1>
+        
+        <form id="cadastropessoa">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required placeholder="digite seu nome completo">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" required placeholder="digite seu email">
+            </div>
+
+            <div class="form-group">
+                <label for="Telefone">Telefone</label>
+                <input type="tel" name="Telefone" id="Telefone" required placeholder="Digite seu número" maxlength="15">
+            </div>
+            <div class="form-group">
+                <label for="Datanascimento">Data de nascimento</label>
+                <input type="date" name="Datanascimento" id="Datanascimento" required maxlength="14">
+            </div>
+
+            <div class="form-group">
+                <label for="CEP">CEP</label>
+                <input type="text" name="CEP" id="CEP" required maxlength="9" placeholder="Digite seu CEP">
+            </div>
+
+            <div class="form-group">
+                <label for="Endereço">Endereço</label>
+                <input type="text" name="Endereço" id="Endereço" required placeholder="digite seu endereço">
+            </div>
+
+            <div class="form-group">
+                <label for="Numerocasa">Número</label>
+                <input type="tel" name="Numerocasa" id="Numerocasa" required maxlength="15" placeholder="digite o número">
+            </div>
+            <div class="form-group">
+                <label for="Bairro">Bairro</label>
+                <input type="text" name="Bairro" id="Bairro" required maxlength="9" placeholder="digite o Bairro">
+            </div>
+
+            <div class="form-group">
+                <label for="Cidade">Cidade</label>
+                <input type="text" name="Cidade" id="Cidade" required maxlength="9" placeholder="digite o Cidade">
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <select name="estado" id="estado" class="inputvlr02" required>
+                    <option value="">Selecione um estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="CPF">CPF</label>
+                <input type="text" name="CPF" id="CPF" required placeholder="digite seu CPF(inclua os caracteres especiais)" maxlength="14">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" id="senha" placeholder="digite uma senha" required maxlength="25">
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Confirme sua senha</label>
+                <input type="password" name="confirmasenha" id="confirmasenha" placeholder="digite uma senha" required maxlength="25">
+            </div>
+
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+        </form>
+
+        <div class="login-link">
+            Já tem uma conta? <a href="login.html">Faça login</a>
+        </div>
+    </div>
+
+</body>
+</html>

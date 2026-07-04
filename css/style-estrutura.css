@@ -7,25 +7,22 @@
     font-family: 'Google Sans', sans-serif;
 }
 
-/* 🎨 Paleta de Cores Moderna (Roxo & Dark) */
+
 :root {
-    --bg-body: #0a0813;          /* Fundo ultra dark com toque sutil de roxo */
-    --bg-surface: #130f22;       /* Fundo dos cards (Glassmorphism moderno) */
-    --bg-input: #1e1932;         /* Fundo do input */
-    --cor-primaria: #9d4edd;     /* Roxo principal vibrante */
-    --cor-secundaria: #c77dff;   /* Roxo claro para hovers e destaques */
-    --texto-principal: #f8f9fa;  /* Branco fosco para leitura confortável */
-    --texto-secundario: #b39ddb; /* Roxo acinzentado para textos secundários */
+    --bg-body: #0a0813;        
+    --bg-surface: #130f22;       
+    --bg-input: #1e1932;        
+    --cor-primaria: #9d4edd;     
+    --cor-secundaria: #c77dff;  
+    --texto-principal: #f8f9fa;  
+    --texto-secundario: #b39ddb;
     --borda-suave: rgba(157, 78, 221, 0.15);
 }
-
 body {
     background-color: var(--bg-body);
     color: var(--texto-principal);
     min-height: 100vh;
 }
-
-/* 📐 Layout Responsivo Principal */
 #geral {
     width: 100%;
     max-width: 1200px;
@@ -35,8 +32,6 @@ body {
     flex-direction: column;
     gap: 30px;
 }
-
-/* 🗂️ Cabeçalho Responsivo */
 #cabecalho {
     background-color: var(--bg-surface);
     border: 1px solid var(--borda-suave);
@@ -49,14 +44,12 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
-
 #logo {
     font-weight: 1000;
     font-size: 2rem;
     color: var(--cor-secundaria);
 }
-
-/* Configurando a navbar */
+/* navbar */
 #menu ul {
     display: flex;
     gap: 25px;
@@ -75,13 +68,22 @@ body {
     color: var(--cor-secundaria);
 }
 
-/* 🔍 Seção de Pesquisa Fluida e Moderna */
+.icone-carrinho {
+    width: 30px;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.icone-carrinho:hover {
+    transform: scale(1.15);
+    filter: brightness(0) saturate(100%) invert(23%) sepia(88%) saturate(2636%) hue-rotate(255deg) brightness(97%) contrast(101%);
+}
 #pesquisa {
     width: 100%;
     max-width: 600px;
     margin: 20px auto;
 }
-
 #input-pesquisa {
     width: 100%;
     height: 55px;
@@ -94,13 +96,11 @@ body {
     outline: none;
     transition: all 0.3s ease;
 }
-
 #input-pesquisa:focus {
     border-color: var(--cor-primaria);
     box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
 }
 
-/* Grid de Cards Totalmente Responsivo */
 #cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

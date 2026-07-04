@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Google Sans', sans-serif;
+}
+
+:root {
+    --bg-body: #0a0813;
+    --bg-surface: #130f22;
+    --bg-input: #1e1932;
+    --cor-primaria: #9d4edd;
+    --cor-secundaria: #c77dff;
+    --texto-principal: #f8f9fa;
+    --texto-secundario: #b39ddb;
+    --borda-suave: rgba(157, 78, 221, 0.15);
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--texto-principal);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container principal */
+.login-container {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--borda-suave);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Título */
+h1 {
+    color: var(--cor-secundaria);
+    margin-bottom: 8px;
+    border-left: 5px solid var(--cor-primaria);
+    padding-left: 15px;
+    font-size: 1.8rem;
+}
+
+/* Subtítulo */
+.subtitulo {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    opacity: 0.85;
+}
+
+/* Grupos de formulário */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    height: 50px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--borda-suave);
+    border-radius: 12px;
+    padding: 0 15px;
+    color: var(--texto-principal);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.3);
+}
+
+input::placeholder {
+    color: var(--texto-secundario);
+    opacity: 0.6;
+}
+
+/* Opções (Lembrar-me + Esqueci senha) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0 20px;
+    font-size: 0.85rem;
+}
+
+.checkbox-lembrar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--texto-secundario);
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-lembrar input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+.link-esqueci {
+    color: var(--cor-secundaria);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.link-esqueci:hover {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+/* ============================================
+   BOTÃO ENTRAR (com efeitos modernos)
+   ============================================ */
+.btn-entrar {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(135deg, #9d4edd 0%, #7b2cbf 50%, #c77dff 100%);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    border: none;
+    border-radius: 14px;
+    color: var(--texto-principal);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    margin-top: 10px;
+
+    box-shadow:
+        0 4px 15px rgba(157, 78, 221, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    transition:
+        background-position 0.6s ease,
+        transform 0.2s ease,
+        box-shadow 0.4s ease,
+        letter-spacing 0.3s ease;
+}
+
+/* Brilho deslizante (shimmer) */
+.btn-entrar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 100%
+    );
+    transition: left 0.6s ease;
+}
+
+/* Borda luminosa externa (glow) */
+.btn-entrar::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #c77dff, #9d4edd, #c77dff);
+    z-index: -1;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.4s ease;
+}
+
+/* Hover */
+.btn-entrar:hover {
+    background-position: 100% 50%;
+    transform: translateY(-2px);
+    letter-spacing: 1.2px;
+    box-shadow:
+        0 8px 25px rgba(199, 125, 255, 0.55),
+        0 4px 10px rgba(157, 78, 221, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-entrar:hover::before {
+    left: 100%;
+}
+
+.btn-entrar:hover::after {
+    opacity: 0.7;
+}
+
+/* Active (clique) */
+.btn-entrar:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow:
+        0 2px 8px rgba(157, 78, 221, 0.4),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Foco (acessibilidade) */
+.btn-entrar:focus-visible {
+    outline: 2px solid var(--cor-secundaria);
+    outline-offset: 3px;
+}
+
+/* Rodapé do login */
+.rodape-login {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--texto-secundario);
+}
+
+.rodape-login a {
+    color: var(--cor-secundaria);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.rodape-login a:hover {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 25px;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn-entrar {
+        height: 48px;
+        font-size: 0.95rem;
+    }
+
+    .btn-entrar:hover {
+        letter-spacing: 0.8px;
+    }
+}

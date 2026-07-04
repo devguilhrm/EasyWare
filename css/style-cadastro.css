@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Google Sans', sans-serif;
+}
+
+:root {
+    --bg-body: #0a0813;
+    --bg-surface: #130f22;
+    --bg-input: #1e1932;
+    --cor-primaria: #9d4edd;
+    --cor-secundaria: #c77dff;
+    --texto-principal: #f8f9fa;
+    --texto-secundario: #b39ddb;
+    --borda-suave: rgba(157, 78, 221, 0.15);
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--texto-principal);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.cadastro-container {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--borda-suave);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    color: var(--cor-secundaria);
+    margin-bottom: 25px;
+    border-left: 5px solid var(--cor-primaria);
+    padding-left: 15px;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    height: 50px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--borda-suave);
+    border-radius: 12px;
+    padding: 0 15px;
+    color: var(--texto-principal);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.3);
+}
+
+.btn-cadastro {
+    width: 100%;
+    height: 50px;
+    background-color: var(--cor-primaria);
+    border: none;
+    border-radius: 12px;
+    color: var(--texto-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-cadastro:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.btn-cadastro:active {
+    transform: scale(0.98);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--texto-secundario);
+}
+
+.login-link a {
+    color: var(--cor-secundaria);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: var(--cor-primaria);
+}
+
+select {
+    width: 100%;
+    height: 50px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--borda-suave);
+    border-radius: 12px;
+    padding: 0 45px 0 15px;
+    color: var(--texto-principal);
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23c77dff' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5L8 12l6.5-6.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+
+select:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.3);
+}
+
+select option {
+    background-color: var(--bg-input);
+    color: var(--texto-principal);
+}
+input[type="date"] {
+    width: 100%;
+    height: 50px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--borda-suave);
+    border-radius: 12px;
+    padding: 0 15px;
+    color: var(--texto-principal);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="date"]:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.3);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(71%) sepia(17%) saturate(1855%) hue-rotate(231deg) brightness(101%) contrast(101%);
+}
