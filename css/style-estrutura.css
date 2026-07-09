@@ -60,7 +60,7 @@ body {
 #menu ul li a {
     color: var(--texto-principal);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
@@ -110,11 +110,56 @@ body {
     box-shadow: 0 0 15px rgba(157, 78, 221, 0.3);
 }
 
+   #menu-filtro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -10px; 
+}
+
+#menu-filtro ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    flex-wrap: wrap; 
+    padding: 0 10px;
+}
+
+#menu-filtro ul li a {
+    display: inline-block;
+    color: var(--texto-secundario);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 0.9rem;
+    padding: 10px 24px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--borda-suave);
+    border-radius: 50px;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+#menu-filtro ul li a:hover {
+    color: var(--texto-principal);
+    border-color: var(--cor-secundaria);
+    background-color: var(--bg-input);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(199, 125, 255, 0.822);
+}
+
+/*  Classe para quando a categoria estiver selecionada (Ativa) */
+#menu-filtro ul li a.ativo {
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--cor-primaria), #7005ce);
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.788);
+}
 #cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    justify-content: center;
-    gap: 30px;
+    /* Reduzido o mínimo para 250px para evitar quebras feias em celulares médios */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* O gap se adapta: 16px no mobile, escala até 30px no desktop */
+    gap: clamp(16px, 3vw, 30px);
     width: 100%;
 }
 
@@ -124,7 +169,10 @@ body {
     border-radius: 24px;
     padding: 20px;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* Otimização de performance especificando o que vai transicionar */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,34 +180,95 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     border-color: var(--cor-secundaria);
     box-shadow: 
-        0 10px 20px rgba(0, 0, 0, 0.3),
-        0 0 25px rgba(199, 125, 255, 0.2);
+        0 12px 24px rgba(255, 255, 255, 0.123),
+        0 0 25px rgba(199, 125, 255, 0.849);
 }
 
 .card img {
     width: 100%;
-    height: 220px;
+    height: 200px; /* Reduzido levemente para harmonizar com a proporção áurea do card */
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 16px;
     margin-bottom: 15px;
+    transition: transform 0.4s ease;
 }
 
-/* 🛒 Botão de Compra Estilizado */
+/* Efeito interativo na imagem */
+.card:hover img {
+    transform: scale(1.03);
+}
+
+/* Correção de layout para os Textos (Essencial para harmonia visual) */
+.card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto-principal);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    
+    /* Força o título a ter no máximo 2 linhas e adiciona "..." se passar disso */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.1rem; /* Mantém o grid simétrico independente do tamanho do texto */
+}
+
+.card .preco {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cor-secundaria);
+    margin-top: auto; /* Empurra o preço de todos os cards para o mesmo alinhamento */
+    margin-bottom: 5px;
+}
+
+/*  Botão de Compra de Alta Conversão */
 .card .btn-carrinho {
-    width: 100%;
-    max-width: 220px;
-    height: 45px;
+    width: 100%; /* Ocupa toda a largura útil do card. Visual moderno e fácil de tocar no celular */
+    height: 48px; /* Altura ideal recomendada pela Google para acessibilidade mobile */
     margin-top: 15px;
+    border: none;
     border-radius: 50px;
     background: linear-gradient(135deg, var(--cor-primaria), #7005ce);
-    color: rgb(255, 255, 255);
+    color: #ffffff;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 0.85rem;
+    letter-spacing: 0.5px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card .btn-carrinho:hover {
+    filter: brightness(1.15); /* Acende o gradiente suavemente */
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.767);
+}
+
+.card .btn-carrinho:active {
+    transform: scale(0.97); 
+}
+
+.card.efeito-zoom {
+    opacity: 0;
+    animation-name: zoomInSequencial;
+    animation-duration: 450ms;
+   
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation-fill-mode: forwards; 
+}
+
+@keyframes zoomInSequencial {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 #footbar {
