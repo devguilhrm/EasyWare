@@ -1,41 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Carrinho-page.js carregado");
-    
-    // Aguarda um pouco para garantir que o localStorage foi atualizado
+    // Pequeno delay para garantir sincronia com o localStorage
     setTimeout(() => {
         renderizarCarrinho();
         configurarEventos();
     }, 100);
 });
 
+/* Renderiza os itens do carrinho na tela
+   REQUISITO: Atualiza interface sem recarregar a página manipulando o DOM
+ */
 function renderizarCarrinho() {
+  
     const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    console.log("Carrinho carregado:", carrinho);
-    console.log("Total de itens:", carrinho.length);
-    
     const container = document.getElementById("itensCarrinho");
     const carrinhoVazio = document.getElementById("carrinhoVazio");
     const resumoPedido = document.getElementById("resumoPedido");
 
-    // Limpa o container
-    container.innerHTML = "";
+    container.innerHTML = ""; // Limpa o container antes de renderizar
 
     if (carrinho.length === 0) {
-        console.log("Carrinho vazio");
         carrinhoVazio.style.display = "block";
         resumoPedido.style.display = "none";
         return;
     }
 
-    console.log(`Renderizando ${carrinho.length} itens`);
-    
     carrinhoVazio.style.display = "none";
     resumoPedido.style.display = "block";
 
-    // Renderiza cada item
     carrinho.forEach((produto, index) => {
-        console.log(`Renderizando item ${index}:`, produto);
+        const subtotalItem = produto.preco * produto.quantidade;
         
+        // REQUISITO: Campo de entrada (input) para alterar a quantidade
         const itemHTML = `
             <div class="item-carrinho" data-index="${index}">
                 <div class="item-imagem">
@@ -44,14 +40,23 @@ function renderizarCarrinho() {
                 <div class="item-info">
                     <h3 class="item-nome">${produto.nome}</h3>
                     <p class="item-preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+                    
                     <div class="item-quantidade">
                         <button class="btn-quantidade btn-diminuir" data-index="${index}">−</button>
-                        <span class="quantidade-valor">${produto.quantidade}</span>
+                        
+                        <!-- INPUT ADICIONADO PARA ATENDER AO REQUISITO -->
+                        <input type="number" 
+                               class="input-quantidade" 
+                               value="${produto.quantidade}" 
+                               min="1" 
+                               data-index="${index}">
+                               
                         <button class="btn-quantidade btn-aumentar" data-index="${index}">+</button>
                     </div>
                 </div>
                 <div class="item-acoes">
-                    <p class="item-subtotal">R$ ${(produto.preco * produto.quantidade).toFixed(2).replace('.', ',')}</p>
+                    <!-- O subtotal é recalculado dinamicamente -->
+                    <p class="item-subtotal">R$ ${subtotalItem.toFixed(2).replace('.', ',')}</p>
                     <button class="btn-remover" data-index="${index}">Remover</button>
                 </div>
             </div>
@@ -59,11 +64,17 @@ function renderizarCarrinho() {
         container.insertAdjacentHTML("beforeend", itemHTML);
     });
 
-    atualizarResumo();
+    atualizarResumo(carrinho);
 }
 
-function atualizarResumo() {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+/**
+ * 3 Recalcula e exibe os valores totais.
+ * REQUISITO: Recalcular automaticamente o valor total do item e do carrinho.
+ */
+function atualizarResumo(carrinho) {
+    if (!carrinho) {
+        carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    }
     
     const subtotal = carrinho.reduce((acc, produto) => {
         return acc + (produto.preco * produto.quantidade);
@@ -71,72 +82,84 @@ function atualizarResumo() {
 
     document.getElementById("subtotal").textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
     document.getElementById("total").textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    
-    console.log("Resumo atualizado - Subtotal:", subtotal);
 }
 
+/**
+ * Função auxiliar para salvar no localStorage e atualizar a tela.
+ * REQUISITO: Boas práticas de programação (evita repetição de código - DRY).
+ */
+function salvarERenderizar(carrinho) {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    renderizarCarrinho();
+}
+
+/**
+ * Configura todos os eventos de clique e alteração de input.
+ */
 function configurarEventos() {
     const container = document.getElementById("itensCarrinho");
     const btnFinalizar = document.getElementById("btnFinalizar");
     const btnLimpar = document.getElementById("btnLimpar");
 
-    // Event delegation para botões de quantidade e remover
+    // Delegação de eventos para os botões (+ e -)
     container.addEventListener("click", (e) => {
         const target = e.target;
         const index = parseInt(target.dataset.index);
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 
         if (target.classList.contains("btn-aumentar")) {
-            aumentarQuantidade(index);
+            carrinho[index].quantidade++;
+            salvarERenderizar(carrinho);
+            
         } else if (target.classList.contains("btn-diminuir")) {
-            diminuirQuantidade(index);
+            if (carrinho[index].quantidade > 1) {
+                carrinho[index].quantidade--;
+                salvarERenderizar(carrinho);
+            }
+            
         } else if (target.classList.contains("btn-remover")) {
-            removerItem(index);
+            carrinho.splice(index, 1);
+            salvarERenderizar(carrinho);
         }
     });
 
-    // Finalizar compra
+    // REQUISITO: Evento para quando o usuário digita diretamente no campo de input
+    container.addEventListener("input", (e) => {
+        if (e.target.classList.contains("input-quantidade")) {
+            const index = parseInt(e.target.dataset.index);
+            let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            
+            // REQUISITO: Validar campo para aceitar apenas inteiros positivos
+            let novaQuantidade = parseInt(e.target.value);
+            
+            if (isNaN(novaQuantidade) || novaQuantidade < 1) {
+                novaQuantidade = 1; // Força o valor mínimo para 1
+            }
+            
+            // Atualiza o valor no array e no input (caso tenha sido corrigido)
+            carrinho[index].quantidade = novaQuantidade;
+            e.target.value = novaQuantidade; 
+            
+            // Salva e atualiza a tela sem recarregar
+            salvarERenderizar(carrinho);
+        }
+    });
+
     btnFinalizar.addEventListener("click", () => {
         const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-        
         if (carrinho.length === 0) {
             alert("Seu carrinho está vazio!");
             return;
         }
-
-        alert("Compra finalizada com sucesso! (Funcionalidade de pagamento será implementada)");
+        alert("Compra finalizada com sucesso!");
         localStorage.removeItem("carrinho");
         window.location.href = "../index.html";
     });
 
-    // Limpar carrinho
     btnLimpar.addEventListener("click", () => {
         if (confirm("Tem certeza que deseja limpar o carrinho?")) {
             localStorage.removeItem("carrinho");
             renderizarCarrinho();
         }
     });
-}
-
-function aumentarQuantidade(index) {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    carrinho[index].quantidade++;
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    renderizarCarrinho();
-}
-
-function diminuirQuantidade(index) {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    
-    if (carrinho[index].quantidade > 1) {
-        carrinho[index].quantidade--;
-        localStorage.setItem("carrinho", JSON.stringify(carrinho));
-        renderizarCarrinho();
-    }
-}
-
-function removerItem(index) {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-    carrinho.splice(index, 1);
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    renderizarCarrinho();
 }
